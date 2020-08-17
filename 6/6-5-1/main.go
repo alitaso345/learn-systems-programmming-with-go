@@ -15,7 +15,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println("Server is running at localhost:888")
+	fmt.Println("Server is running at localhost:8888")
 	for {
 		conn, err := listener.Accept()
 		if err != nil {
