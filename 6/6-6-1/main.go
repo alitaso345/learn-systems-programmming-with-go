@@ -28,7 +28,7 @@ func main() {
 			fmt.Printf("Accept %v\n", conn.RemoteAddr())
 			for {
 				conn.SetReadDeadline(time.Now().Add(5 * time.Second))
-				request, nil := http.ReadRequest(bufio.NewReader(conn))
+				request, err := http.ReadRequest(bufio.NewReader(conn))
 				if err != nil {
 					// タイムアウトもしくはソケットクローズ時は終了
 					// それ以外はエラーにする
@@ -44,7 +44,7 @@ func main() {
 
 				dump, _ := httputil.DumpRequest(request, true)
 				fmt.Println(string(dump))
-				content := "Hello World!"
+				content := "Hello World!\n"
 
 				response := http.Response{
 					StatusCode:    200,
